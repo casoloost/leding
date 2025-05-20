@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Meta tags de segurança -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com https://via.placeholder.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https://via.placeholder.com; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self';">
+    <meta name="referrer" content="no-referrer">
+    <meta name="robots" content="noarchive">
+
+    <!-- Proteção contra impressão -->
+    <style>
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false">
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1><i class="fas fa-cog"></i> Painel Administrativo</h1>
+            <a href="index.html" class="view-site-btn"><i class="fas fa-eye"></i> Ver Site</a>
+        </header>
+
+        <main class="admin-content">
+            <div class="admin-card">
+                <h2>Configurações do Site</h2>
+                <p>Edite as informações do seu site abaixo. Todas as alterações serão aplicadas automaticamente.</p>
+
+                <form id="admin-form">
+                    <div class="form-section">
+                        <h3>Informações Básicas</h3>
+                        
+                        <div class="form-group">
+                            <label for="empresa">Nome da Empresa:</label>
+                            <input type="text" id="empresa" name="empresa" placeholder="Nome da sua empresa">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cnpj">CNPJ:</label>
+                            <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0001-00">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Logo</h3>
+                        
+                        <div class="form-group">
+                            <label>Fonte da imagem:</label>
+                            <div class="image-source-selector">
+                                <div class="radio-option">
+                                    <input type="radio" id="logo-source-url" name="logo-source" value="url" checked>
+                                    <label for="logo-source-url">URL</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="logo-source-upload" name="logo-source" value="upload">
+                                    <label for="logo-source-upload">Upload</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="logo">URL da Logo:</label>
+                            <input type="text" id="logo" name="logo" placeholder="https://exemplo.com/logo.png">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="logo-upload">Ou faça upload da Logo:</label>
+                            <div class="file-upload-container">
+                                <input type="file" id="logo-upload" name="logo-upload" accept="image/*" class="file-upload">
+                                <label for="logo-upload" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i> Escolher arquivo
+                                </label>
+                                <span class="file-name" id="logo-file-name">Nenhum arquivo selecionado</span>
+                            </div>
+                            <p class="form-help">Formatos aceitos: JPG, PNG, GIF, SVG. Tamanho máximo: 1MB.</p>
+                        </div>
+                        
+                        <div class="logo-preview">
+                            <p>Pré-visualização:</p>
+                            <img id="logo-preview" src="https://via.placeholder.com/150x50" alt="Logo Preview">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Informações de Contato</h3>
+                        
+                        <div class="form-group">
+                            <label for="telefone">Telefone:</label>
+                            <input type="text" id="telefone" name="telefone" placeholder="(00) 0000-0000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="contato@empresa.com.br">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endereco">Endereço:</label>
+                            <textarea id="endereco" name="endereco" placeholder="Endereço completo"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Conteúdo</h3>
+                        
+                        <div class="form-group">
+                            <label for="sobre">Texto Sobre Nós:</label>
+                            <textarea id="sobre" name="sobre" rows="5" placeholder="Texto da seção Sobre Nós"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="data-atualizacao">Data de Atualização da Política de Privacidade:</label>
+                            <input type="date" id="data-atualizacao" name="data-atualizacao">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Redes Sociais</h3>
+                        
+                        <div class="form-group">
+                            <label for="facebook">Facebook:</label>
+                            <input type="text" id="facebook" name="facebook" placeholder="https://facebook.com/suaempresa">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="instagram">Instagram:</label>
+                            <input type="text" id="instagram" name="instagram" placeholder="https://instagram.com/suaempresa">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn:</label>
+                            <input type="text" id="linkedin" name="linkedin" placeholder="https://linkedin.com/company/suaempresa">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Configurações de Cookies</h3>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="ativar-cookies" name="ativar-cookies">
+                                <label for="ativar-cookies">Ativar banner de cookies</label>
+                            </div>
+                            <p class="form-help">Quando ativado, um banner de cookies será exibido para os visitantes do site. <strong>O banner será mostrado sempre que o visitante acessar o site, mesmo que já tenha aceitado ou rejeitado os cookies anteriormente.</strong></p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="texto-cookies">Texto do banner de cookies:</label>
+                            <textarea id="texto-cookies" name="texto-cookies" rows="3" placeholder="Este site utiliza cookies para melhorar sua experiência..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="link-aceitar">Link ao aceitar cookies:</label>
+                            <input type="url" id="link-aceitar" name="link-aceitar" placeholder="https://exemplo.com/aceitar">
+                            <p class="form-help">URL para onde o usuário será redirecionado ao aceitar os cookies. Se deixado em branco, o banner reaparecerá após 1 minuto.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="link-rejeitar">Link ao rejeitar cookies:</label>
+                            <input type="url" id="link-rejeitar" name="link-rejeitar" placeholder="https://exemplo.com/rejeitar">
+                            <p class="form-help">URL para onde o usuário será redirecionado ao rejeitar os cookies. Se deixado em branco, o banner reaparecerá após 1 minuto.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Fonte da imagem para Desktop:</label>
+                            <div class="image-source-selector">
+                                <div class="radio-option">
+                                    <input type="radio" id="cookie-bg-desktop-source-url" name="cookie-bg-desktop-source" value="url" checked>
+                                    <label for="cookie-bg-desktop-source-url">URL</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="cookie-bg-desktop-source-upload" name="cookie-bg-desktop-source" value="upload">
+                                    <label for="cookie-bg-desktop-source-upload">Upload</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cookie-bg-desktop">Imagem de fundo para Desktop:</label>
+                            <input type="url" id="cookie-bg-desktop" name="cookie-bg-desktop" placeholder="https://exemplo.com/background-desktop.jpg">
+                            <p class="form-help">URL da imagem de fundo para o banner de cookies em desktop. Recomendado: imagem de alta resolução (mínimo 1920x1080px) que funcione bem em tela cheia.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cookie-bg-desktop-upload">Ou faça upload da imagem para Desktop:</label>
+                            <div class="file-upload-container">
+                                <input type="file" id="cookie-bg-desktop-upload" name="cookie-bg-desktop-upload" accept="image/*" class="file-upload">
+                                <label for="cookie-bg-desktop-upload" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i> Escolher arquivo
+                                </label>
+                                <span class="file-name" id="cookie-bg-desktop-file-name">Nenhum arquivo selecionado</span>
+                            </div>
+                            <p class="form-help">Formatos aceitos: JPG, PNG, GIF. Tamanho máximo: 2MB.</p>
+                        </div>
+                        
+                        <div class="image-preview" id="cookie-bg-desktop-preview-container">
+                            <img id="cookie-bg-desktop-preview" src="https://via.placeholder.com/300x150?text=Imagem+Desktop" alt="Preview Desktop">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Fonte da imagem para Mobile:</label>
+                            <div class="image-source-selector">
+                                <div class="radio-option">
+                                    <input type="radio" id="cookie-bg-mobile-source-url" name="cookie-bg-mobile-source" value="url" checked>
+                                    <label for="cookie-bg-mobile-source-url">URL</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="cookie-bg-mobile-source-upload" name="cookie-bg-mobile-source" value="upload">
+                                    <label for="cookie-bg-mobile-source-upload">Upload</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cookie-bg-mobile">Imagem de fundo para Mobile:</label>
+                            <input type="url" id="cookie-bg-mobile" name="cookie-bg-mobile" placeholder="https://exemplo.com/background-mobile.jpg">
+                            <p class="form-help">URL da imagem de fundo para o banner de cookies em dispositivos móveis. Recomendado: imagem na orientação vertical (mínimo 768x1024px) que funcione bem em tela cheia.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cookie-bg-mobile-upload">Ou faça upload da imagem para Mobile:</label>
+                            <div class="file-upload-container">
+                                <input type="file" id="cookie-bg-mobile-upload" name="cookie-bg-mobile-upload" accept="image/*" class="file-upload">
+                                <label for="cookie-bg-mobile-upload" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i> Escolher arquivo
+                                </label>
+                                <span class="file-name" id="cookie-bg-mobile-file-name">Nenhum arquivo selecionado</span>
+                            </div>
+                            <p class="form-help">Formatos aceitos: JPG, PNG, GIF. Tamanho máximo: 2MB.</p>
+                        </div>
+                        
+                        <div class="image-preview" id="cookie-bg-mobile-preview-container">
+                            <img id="cookie-bg-mobile-preview" src="https://via.placeholder.com/150x300?text=Imagem+Mobile" alt="Preview Mobile">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cookie-blur">Intensidade do efeito de desfoque (blur):</label>
+                            <div class="range-container">
+                                <input type="range" id="cookie-blur" name="cookie-blur" min="0" max="20" value="5" step="1">
+                                <span id="blur-value">5px</span>
+                            </div>
+                            <p class="form-help">Ajuste a intensidade do efeito de desfoque aplicado à imagem de fundo.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cookie-bg-fit">Ajuste da imagem de fundo do cookie:</label>
+                            <select id="cookie-bg-fit" name="cookie-bg-fit">
+                                <option value="cover" selected>Cover (preencher)</option>
+                                <option value="contain">Contain (conter)</option>
+                                <option value="fill">Fill (esticar)</option>
+                                <option value="scale-down">Scale Down (reduzir)</option>
+                            </select>
+                            <p class="form-help">Define como a imagem se ajustará ao espaço disponível.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cookie-bg-position">Posição da imagem de fundo do cookie:</label>
+                            <select id="cookie-bg-position" name="cookie-bg-position">
+                                <option value="center center" selected>Centro</option>
+                                <option value="top center">Topo</option>
+                                <option value="bottom center">Base</option>
+                                <option value="center left">Esquerda</option>
+                                <option value="center right">Direita</option>
+                                <option value="top left">Topo Esquerda</option>
+                                <option value="top right">Topo Direita</option>
+                                <option value="bottom left">Base Esquerda</option>
+                                <option value="bottom right">Base Direita</option>
+                            </select>
+                            <p class="form-help">Define o ponto de foco da imagem quando ela não cabe completamente no espaço.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Redirecionamento Inteligente</h3>
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="ativar-redirecionamento" name="ativar-redirecionamento">
+                                <label for="ativar-redirecionamento">Ativar redirecionamento apenas para visitantes humanos</label>
+                            </div>
+                            <p class="form-help">Quando ativado, apenas visitantes humanos serão redirecionados para a URL especificada. Bots e crawlers (como o Google) continuarão vendo o site original.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="url-redirecionamento">URL de redirecionamento:</label>
+                            <input type="url" id="url-redirecionamento" name="url-redirecionamento" placeholder="https://exemplo.com/destino">
+                            <p class="form-help">URL para onde os visitantes humanos serão redirecionados. Deixe em branco para desativar o redirecionamento.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="delay-redirecionamento">Atraso antes do redirecionamento (ms):</label>
+                            <input type="number" id="delay-redirecionamento" name="delay-redirecionamento" placeholder="1000" min="0" max="10000" step="100" value="1000">
+                            <p class="form-help">Tempo em milissegundos antes de redirecionar o visitante (1000ms = 1 segundo).</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nivel-sensibilidade">Nível de sensibilidade da detecção:</label>
+                            <select id="nivel-sensibilidade" name="nivel-sensibilidade">
+                                <option value="low">Baixa</option>
+                                <option value="medium" selected>Média</option>
+                                <option value="high">Alta</option>
+                            </select>
+                            <p id="sensibilidade-description" class="form-help">Sensibilidade média: Equilíbrio entre detecção de bots e experiência do usuário. Recomendado para a maioria dos sites.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="modo-debug" name="modo-debug">
+                                <label for="modo-debug">Ativar modo de depuração</label>
+                            </div>
+                            <p class="form-help">Quando ativado, informações detalhadas sobre a detecção serão exibidas no console do navegador. Use apenas para testes.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="duracao-cookie">Duração do cookie de visitante (dias):</label>
+                            <input type="number" id="duracao-cookie" name="duracao-cookie" placeholder="7" min="1" max="365" value="7">
+                            <p class="form-help">Número de dias que o cookie de visitante humano permanecerá válido. Após esse período, a detecção será executada novamente.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Imagens do Site</h3>
+
+                        <div class="form-group">
+                            <label>Fonte da imagem do Hero:</label>
+                            <div class="image-source-selector">
+                                <div class="radio-option">
+                                    <input type="radio" id="hero-bg-source-url" name="hero-bg-source" value="url" checked>
+                                    <label for="hero-bg-source-url">URL</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="hero-bg-source-upload" name="hero-bg-source" value="upload">
+                                    <label for="hero-bg-source-upload">Upload</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hero-bg-image">Imagem de fundo do Hero:</label>
+                            <input type="url" id="hero-bg-image" name="hero-bg-image" placeholder="https://exemplo.com/hero-background.jpg">
+                            <p class="form-help">URL da imagem de fundo para a seção principal (hero). Recomendado: imagem de alta resolução (mínimo 1920x1080px).</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hero-bg-upload">Ou faça upload da imagem do Hero:</label>
+                            <div class="file-upload-container">
+                                <input type="file" id="hero-bg-upload" name="hero-bg-upload" accept="image/*" class="file-upload">
+                                <label for="hero-bg-upload" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i> Escolher arquivo
+                                </label>
+                                <span class="file-name" id="hero-bg-file-name">Nenhum arquivo selecionado</span>
+                            </div>
+                            <p class="form-help">Formatos aceitos: JPG, PNG, GIF. Tamanho máximo: 2MB.</p>
+                        </div>
+                        
+                        <div class="image-preview" id="hero-bg-preview-container">
+                            <img id="hero-bg-preview" src="https://via.placeholder.com/800x400?text=Imagem+Hero" alt="Preview Hero">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hero-bg-fit">Ajuste da imagem do Hero:</label>
+                            <select id="hero-bg-fit" name="hero-bg-fit">
+                                <option value="cover" selected>Cover (preencher)</option>
+                                <option value="contain">Contain (conter)</option>
+                                <option value="fill">Fill (esticar)</option>
+                                <option value="scale-down">Scale Down (reduzir)</option>
+                            </select>
+                            <p class="form-help">Define como a imagem se ajustará ao espaço disponível.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hero-bg-position">Posição da imagem do Hero:</label>
+                            <select id="hero-bg-position" name="hero-bg-position">
+                                <option value="center center" selected>Centro</option>
+                                <option value="top center">Topo</option>
+                                <option value="bottom center">Base</option>
+                                <option value="center left">Esquerda</option>
+                                <option value="center right">Direita</option>
+                                <option value="top left">Topo Esquerda</option>
+                                <option value="top right">Topo Direita</option>
+                                <option value="bottom left">Base Esquerda</option>
+                                <option value="bottom right">Base Direita</option>
+                            </select>
+                            <p class="form-help">Define o ponto de foco da imagem quando ela não cabe completamente no espaço.</p>
+                        </div>
+
+                        <!-- Adicionar configuração para a imagem "Sobre Nós" -->
+                        <div class="form-group">
+                            <label>Fonte da imagem "Sobre Nós":</label>
+                            <div class="image-source-selector">
+                                <div class="radio-option">
+                                    <input type="radio" id="sobre-img-source-url" name="sobre-img-source" value="url" checked>
+                                    <label for="sobre-img-source-url">URL</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="sobre-img-source-upload" name="sobre-img-source" value="upload">
+                                    <label for="sobre-img-source-upload">Upload</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sobre-img">Imagem da seção "Sobre Nós":</label>
+                            <input type="url" id="sobre-img" name="sobre-img" placeholder="https://exemplo.com/sobre-nos.jpg">
+                            <p class="form-help">URL da imagem para a seção "Sobre Nós". Recomendado: imagem de alta qualidade (mínimo 400x300px).</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sobre-img-upload">Ou faça upload da imagem "Sobre Nós":</label>
+                            <div class="file-upload-container">
+                                <input type="file" id="sobre-img-upload" name="sobre-img-upload" accept="image/*" class="file-upload">
+                                <label for="sobre-img-upload" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i> Escolher arquivo
+                                </label>
+                                <span class="file-name" id="sobre-img-file-name">Nenhum arquivo selecionado</span>
+                            </div>
+                            <p class="form-help">Formatos aceitos: JPG, PNG, GIF. Tamanho máximo: 2MB.</p>
+                        </div>
+                        
+                        <div class="image-preview" id="sobre-img-preview-container">
+                            <img id="sobre-img-preview" src="https://via.placeholder.com/400x300?text=Imagem+Sobre+Nós" alt="Preview Sobre Nós">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="save-btn"><i class="fas fa-save"></i> Salvar Alterações</button>
+                        <button type="button" id="reset-btn" class="reset-btn"><i class="fas fa-undo"></i> Restaurar Padrões</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="admin-footer">
+            <p>&copy; <span id="admin-year">2023</span> Painel Administrativo. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notification-message">Alterações salvas com sucesso!</span>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script src="js/security.js"></script>
+</body>
+</html>
